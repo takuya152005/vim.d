@@ -269,7 +269,7 @@ augroup cch
     autocmd WinLeave * set nocursorline
     autocmd WinLeave * set nocursorcolumn
     autocmd WinEnter,BufRead * set cursorline
-    autocmd WinEnter,BufRead * set cursorcolumn
+"    autocmd WinEnter,BufRead * set cursorcolumn
 augroup END
 
 "-----------------------------------------------------------------------------
