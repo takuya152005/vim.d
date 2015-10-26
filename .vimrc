@@ -3,28 +3,64 @@
 " NeoBundle プラグイン管理
 "-------------------------------------------------
 
-" Vi互換OFF
-set nocompatible
-filetype off
-
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 if has('vim_starting')
-    filetype plugin off
-    filetype indent off
-    execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
+  if &compatible
+     set nocompatible               " Be iMproved
+ endif
+ " Required:
+ set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle'))
 
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'junegunn/seoul256.vim'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'git://github.com/kien/ctrlp.vim.git'
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'scrooloose/nerdtree'
 
-" ファイル形式別プラグインのロードを有効化
-syntax on
-filetype plugin on
-filetype indent on
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles
+" found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+" NERDTree設定 Ctrl + e でディレクトリツリー開く
+" 参考URL:http://blog.livedoor.jp/kumonopanya/archives/51048805.html
+nmap <silent> <C-e>      :NERDTreeToggle<CR>
+vmap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+omap <silent> <C-e>      :NERDTreeToggle<CR>
+imap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+cmap <silent> <C-e> <C-u>:NERDTreeToggle<CR>
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd VimEnter * execute 'NERDTree'
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=0
+let g:NERDTreeMouseMode=2
+let g:NERDTreeShowBookmarks=1
 
 "-------------------------------------------------
 " Basic 基本設定
