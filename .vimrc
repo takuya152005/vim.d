@@ -66,6 +66,10 @@ let g:NERDTreeShowBookmarks=1
 " Basic 基本設定
 "-------------------------------------------------
 
+" 画面サイズ 設定すると動かなくなる
+" set columns=300
+" set lines=200
+
 " カーソルの上または下に表示する最小限の行数
 set scrolloff=5
 
